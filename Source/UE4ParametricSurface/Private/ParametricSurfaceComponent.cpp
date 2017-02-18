@@ -163,7 +163,7 @@ class UMaterialInterface* UParametricSurfaceComponent::GetMaterial(int32 Element
 	return (0 == ElementIndex) ? MaterialInterface : nullptr;
 }
 
-void UParametricSurfaceComponent::GetUsedMaterials(TArray<UMaterialInterface*>& OutMaterials) const
+void UParametricSurfaceComponent::GetUsedMaterials(TArray<UMaterialInterface*>& OutMaterials, bool bGetDebugMaterials) const
 {
 	if (nullptr != MaterialInterface)
 	{

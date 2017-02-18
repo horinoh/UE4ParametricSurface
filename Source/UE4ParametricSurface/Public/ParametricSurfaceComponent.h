@@ -22,7 +22,7 @@ public:
 	//!< UPrimitiveComponent
 	virtual FPrimitiveSceneProxy* CreateSceneProxy() override;
 	virtual class UMaterialInterface* GetMaterial(int32 ElementIndex) const override;
-	virtual void GetUsedMaterials(TArray<UMaterialInterface*>& OutMaterials) const override;
+	virtual void GetUsedMaterials(TArray<UMaterialInterface*>& OutMaterials, bool bGetDebugMaterials = false) const override;
 	virtual int32 GetNumMaterials() const override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Material)
