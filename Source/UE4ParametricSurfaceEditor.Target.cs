@@ -5,21 +5,10 @@ using System.Collections.Generic;
 
 public class UE4ParametricSurfaceEditorTarget : TargetRules
 {
-	public UE4ParametricSurfaceEditorTarget(TargetInfo Target)
+	public UE4ParametricSurfaceEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-	}
 
-	//
-	// TargetRules interface.
-	//
-
-	public override void SetupBinaries(
-		TargetInfo Target,
-		ref List<UEBuildBinaryConfiguration> OutBuildBinaryConfigurations,
-		ref List<string> OutExtraModuleNames
-		)
-	{
-		OutExtraModuleNames.AddRange( new string[] { "UE4ParametricSurface" } );
+		ExtraModuleNames.Add("UE4ParametricSurface");
 	}
 }

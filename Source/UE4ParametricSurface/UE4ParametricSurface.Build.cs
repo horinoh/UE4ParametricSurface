@@ -4,7 +4,7 @@ using UnrealBuildTool;
 
 public class UE4ParametricSurface : ModuleRules
 {
-	public UE4ParametricSurface(TargetInfo Target)
+	public UE4ParametricSurface(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore"
 															, "RHI", "RenderCore", "ShaderCore" });
