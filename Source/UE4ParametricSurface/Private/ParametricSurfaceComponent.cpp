@@ -98,7 +98,7 @@ public:
 		//return GetPosition_Snail(InUV) * 100.0f;
 	}
 
-	//!< パラメトリックサーフェス参考 http://www.3d-meier.de/tut3/Seite0.html
+	//!< ParametricSurface http://www.3d-meier.de/tut3/Seite0.html
 	FVector2D GetUV_Torus(const FVector2D& InUV) const { return InUV * 2.0f * PI; }
 	FVector GetPosition_Torus(const FVector2D& InUV) const
 	{
