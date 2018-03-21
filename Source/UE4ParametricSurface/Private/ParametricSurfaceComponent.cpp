@@ -17,7 +17,7 @@ public:
 	//!< FPrimitiveSceneProxy
 	virtual void GetDynamicMeshElements(const TArray<const FSceneView*>& Views, const FSceneViewFamily& ViewFamily, uint32 VisibilityMap, class FMeshElementCollector& Collector) const override
 	{
-		FDynamicMeshBuilder MeshBuilder;
+		FDynamicMeshBuilder MeshBuilder(ERHIFeatureLevel::Type::SM5);
 
 		const auto Num = 20;
 		const auto DeltaUV = 1.0f / (Num - 1);
@@ -31,7 +31,7 @@ public:
 
 				FDynamicMeshVertex Vertex;
 				Vertex.Position = GetPosition(UV);
-				Vertex.TextureCoordinate = GetUV(UV);
+				Vertex.TextureCoordinate[0] = GetUV(UV);
 				const auto Edge01 = GetPosition(UV + FVector2D(0.01f, 0.0f)) - Vertex.Position;
 				const auto Edge02 = GetPosition(UV - FVector2D(0.0f, 0.01f)) - Vertex.Position;
 				Vertex.TangentX = Edge01.GetSafeNormal();
@@ -43,7 +43,7 @@ public:
 		}
 		MeshBuilder.AddVertices(Vertices);
 
-		TArray<int32> Indices;
+		TArray<uint32> Indices;
 		Indices.Reserve((Num - 1) * (Num - 1) * 6);
 		for (auto i = 0; i < Num - 1; ++i)
 		{
@@ -83,6 +83,11 @@ public:
 		Result.bDynamicRelevance = true;
 		Result.bShadowRelevance = IsShadowCast(View);
 		return Result;
+	}
+	virtual SIZE_T GetTypeHash() const override 
+	{
+		static size_t UniquePointer;
+		return reinterpret_cast<size_t>(&UniquePointer); 
 	}
 
 	virtual FVector2D GetUV(const FVector2D& InUV) const
