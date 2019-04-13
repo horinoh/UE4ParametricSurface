@@ -61,14 +61,14 @@ public:
 		}
 		MeshBuilder.AddTriangles(Indices);
 
-		auto MaterialRenderProxy = UMaterial::GetDefaultMaterial(MD_Surface)->GetRenderProxy(IsSelected());
+		auto MaterialRenderProxy = UMaterial::GetDefaultMaterial(MD_Surface)->GetRenderProxy();
 		if (nullptr != MaterialInterface)
 		{
-			MaterialRenderProxy = MaterialInterface->GetRenderProxy(false);
+			MaterialRenderProxy = MaterialInterface->GetRenderProxy();
 		}
 		if (Views[0]->Family->EngineShowFlags.Wireframe)
 		{
-			MaterialRenderProxy = GEngine->WireframeMaterial->GetRenderProxy(IsSelected());
+			MaterialRenderProxy = GEngine->WireframeMaterial->GetRenderProxy();
 		}
 		MeshBuilder.GetMesh(GetLocalToWorld(), MaterialRenderProxy, 0, false, false, 0, Collector);
 	}
